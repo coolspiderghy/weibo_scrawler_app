@@ -38,9 +38,9 @@ DEMO:
 	
 	mongodb.py：主要是后续的csv数据插入数据库的实现
 
-	craler：这是主要的解析函数
+	crawler：这是主要的解析函数
 	
-	toolit:登陆函数以及下载主函数
+	toolkit:登陆函数以及下载主函数
 	
 	uuid.txt:存放初始爬取的种子id
 
