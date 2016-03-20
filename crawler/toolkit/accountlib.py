@@ -58,6 +58,7 @@ class AccountManager:
         else:
             opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
         urllib2.install_opener(opener)
+    #print 'seton'
 
     def __init__(self):
         self.cur_user = ''  # 当前登录账户名
@@ -193,6 +194,7 @@ class AccountManager:
         self.loginpostdata['su'] = self.encode_username(username)
         self.loginpostdata['sp'] = self.encode_pwd(pwd, servertime, nonce, pubkey)
         self.loginpostdata_encode = urllib.urlencode(self.loginpostdata)
+        #print self.loginpostdata
         headers = {
             'User-Agent': 'Mozilla/5.0 (X11 Linux i686 rv:8.0) Gecko/20100101 Firefox/8.0 Chrome/20.0.1132.57 Safari/536.11'}
         req = urllib2.Request(
@@ -202,12 +204,14 @@ class AccountManager:
         )
         result = urllib2.urlopen(req)
         text = result.read()
-        # p = re.compile('location\.replace\(\"(.*)\"\)')  # 此处和之前略有区别，小心！
+        #print text
+        #p = re.compile('location\.replace\(\"(.*)\"\)')  # 此处和之前略有区别，小心！
         try:
-            # login_url = p.search(text).group(1)
+            #login_url = p.search(text).group(1)
             btag = 'location.replace("'
             etag = '");'
             bpos = text.find(btag)
+            #print bpos
             if bpos != -1:
                 bpos += len(btag)
                 epos = text.find(etag, bpos)
@@ -215,6 +219,7 @@ class AccountManager:
                 bpos = text.find(btag.replace('"', "'")) + len(btag)
                 epos = text.find(etag.replace('"', "'"), bpos)
             login_url = text[bpos:epos]
+            #print login_url
             # print login_url
             query_string = urlparse.parse_qs(urlparse.urlparse(login_url).query)
             # print query_string
@@ -224,7 +229,7 @@ class AccountManager:
                 p = re.compile('\((.*)\)')
                 feedback = json.loads(p.search(feedback).group(1))
                 if feedback['result']:
-                    print username, u'登录成功!'
+                    print username, u'登录成功，耿海洋，好样的!'
                     # print feedback['userinfo']['displayname'], u'登录成功!'
                     return True
                 else:
@@ -293,4 +298,4 @@ class AccountManager:
 if __name__ == '__main__':
     tel = '13322931529'
     account = AccountManager()
-    account.login('aishlinn219640801@163.com', '1234qwer')
+    account.login('guanglingsan1988@sina.com', 'cunzai7412428')

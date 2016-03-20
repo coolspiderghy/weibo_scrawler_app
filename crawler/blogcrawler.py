@@ -4,11 +4,11 @@
 import os
 import time
 import math
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 import config
-from toolkit.downloader import Downloader, DownloadError
 from toolkit import datetimelib as dt
+from toolkit.downloader import Downloader, DownloadError
 from parser.commonblogparser import CommonBlogParser
 
 
@@ -60,6 +60,7 @@ class BlogCrawler(object):
         1. 获取当前用户的page_id
         2. 获取当前用户的微博总页数
         """
+        #print url
         http_params = {
             '__rnd': '',
             '_k': '',
@@ -167,7 +168,7 @@ class BlogCrawler(object):
         etag = '<\/div>'
         bpos = content.find(btag)
         epos = content.find(etag, bpos)
-        soup = BeautifulSoup(content[bpos:epos].replace('\\/', '/') + '</div>')
+        soup = BeautifulSoup(content[bpos:epos].replace('\\/', '/') + '</div>',"lxml")
         img_url = soup.img['src']
         nick_name = soup.img['alt']
         return img_url, nick_name
@@ -189,7 +190,10 @@ class BlogCrawler(object):
         if start_pageindex > self.pagenum:
             return []
         #return self._binary_scratch(uid, start_pageindex)
-        return self._sequence_scratch(self.uid, start_pageindex, self.pagenum)
+        # the following two lines are added by haiyang to limit the pages downloaded
+        if self.pagenum>100:
+            self.pagenum=100
+        return self._sequence_scratch(self.uid, start_pageindex,self.pagenum)
 
     def _binary_scratch(self, uid, start_pageindex):
         """
@@ -224,10 +228,13 @@ class BlogCrawler(object):
         for pageindex in range(start_pageindex, end_pageindex + direction, direction):
             temp_blogs = self._parse_blogs(pageindex)
             print uid + ':获取第' + str(pageindex) + '页微博成功.'
+            #print temp_blogs
             blogs.extend(temp_blogs)
             time.sleep(1)
-            if not self._continue(temp_blogs, direction):
-                break
+            #if not self._continue(temp_blogs, direction):
+            #    #print 'shit'
+            #    break
+        #print blogs
         return blogs
 
     def _parse_blogs(self, pageindex):
@@ -246,6 +253,7 @@ class BlogCrawler(object):
         if content:
             sub_blogs = self.parser.parse(content)
             blogs.extend(sub_blogs)
+            #print sub_blogs
         if not self._continue(blogs):
             return blogs
         # 下载第二页
@@ -319,4 +327,4 @@ if __name__ == '__main__':
         print e
         exit()
     blogcrawler = BlogCrawler()
-    blogcrawler.scratch('3608513375', mod=1)
+    blogcrawler.scratch()#'http://weibo.com/p/aj/v6/mblog/mbloglist',mod=1)#'3608513375'

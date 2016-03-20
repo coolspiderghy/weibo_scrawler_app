@@ -28,12 +28,12 @@ NOBLOG_USER_FILEPATH = 'log/noblog-user.txt'
 
 # 文件保存设置
 dir_count = 0  # 计数当前目录编号
-dir_root = 'data/data1'  # 保存文件的根目录
+dir_root = '/Users/genghaiyang/ghy_works/projects/weibo_crawler/data/blogcontents'  # 保存文件的根目录
 MAX_FILE_COUNT = 1000  # 每个文件夹最多保存的文件数目
 
 # 用户ID存放地址
-UID_FILEPATH = 'uuid.txt'
+UID_FILEPATH = 'uun.txt'
 
 # 抓取的数据的时间间隔
-begin_time = '2014-1-1 00:00:00'
-end_time = '2014-10-1 00:00:00'
+begin_time = '2010-1-1 00:00:00'
+end_time = '2016-12-30 00:00:00'

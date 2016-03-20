@@ -8,8 +8,8 @@
 # sys.setdefaultencoding('utf-8')
 
 import logging
-from .toolkit.downloader import Downloader
-from BeautifulSoup import BeautifulSoup
+from toolkit.downloader import Downloader
+from bs4 import BeautifulSoup
 
 class UserCrawler(object):
     """
@@ -17,10 +17,11 @@ class UserCrawler(object):
     """
 
     def __init__(self):
-	cookie="SINAGLOBAL=3670791019162.063.1432519568807; ULV=1434184446636:3:1:1:9776813265987.371.1434184446576:1432539758675; SUHB=0S7S3YyGl7ABmk; YF-Ugrow-G0=169004153682ef91866609488943c77f; SUS=SID-5513307770-1434867321-GZ-fdui1-417cce02c02cba62afb4b09ce64141b5; SUE=es%3D77e325518a1eeaab4d42c04535d022d9%26ev%3Dv1%26es2%3Dda7c170b38a64fa4d9b6668f496fa074%26rs0%3DzdWWsJgKtTVoMTjEP3CWSLj5LpFJ5UF0%252BWyN6Q8Sd35saJbSk7N2YdacjGPXamqnsYetxrZNNIwMVsz0JNGf%252FkJZ%252FIv1Bh9YQHxwFkUE3K1i7kZDBboUO0yOR%252Fz0Ucw37WwoeeAGM28l5q%252FSbHFjWwe%252F3DJSj1ZdRE59Qrdrt%252Fo%253D%26rv%3D0; SUP=cv%3D1%26bt%3D1434867321%26et%3D1434953721%26d%3Dc909%26i%3D41b5%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D17%26st%3D0%26uid%3D5513307770%26name%3Dmkqtx11141ua%2540163.com%26nick%3D%25E6%25AF%2581%25E9%25A6%2599%25E5%258A%2588%25E5%25BC%25B9%26fmp%3D%26lcp%3D2015-03-20%252000%253A59%253A43; YF-V5-G0=d22a701aae075ca04c11f0ef68835839; _s_tentry=login.sina.com.cn; UOR=,,login.sina.com.cn; Apache=9776813265987.371.1434184446576; YF-Page-G0=8fee13afa53da91ff99fc89cc7829b07; WBStore=0d3077cd0cad2262|undefined; SUB=_2A254giYpDeTxGeNL6lES8CnLzDyIHXVb9hDhrDV8PUJbvNBeLRjHkW8xuQX_wA9ncQZsaP1yWBfuXyq9-w..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5iPVj051o7KP9Hly_f8Jud5JpX5K-t; ALF=1466403316; SSOLoginState=1434867321; wvr=6"
-	print 'start load cookie'
-	print cookie
-        self.downloader = Downloader(cookie)
+        #cookie="SINAGLOBAL=3670791019162.063.1432519568807; ULV=1434184446636:3:1:1:9776813265987.371.1434184446576:1432539758675; SUHB=0S7S3YyGl7ABmk; YF-Ugrow-G0=169004153682ef91866609488943c77f; SUS=SID-5513307770-1434867321-GZ-fdui1-417cce02c02cba62afb4b09ce64141b5; SUE=es%3D77e325518a1eeaab4d42c04535d022d9%26ev%3Dv1%26es2%3Dda7c170b38a64fa4d9b6668f496fa074%26rs0%3DzdWWsJgKtTVoMTjEP3CWSLj5LpFJ5UF0%252BWyN6Q8Sd35saJbSk7N2YdacjGPXamqnsYetxrZNNIwMVsz0JNGf%252FkJZ%252FIv1Bh9YQHxwFkUE3K1i7kZDBboUO0yOR%252Fz0Ucw37WwoeeAGM28l5q%252FSbHFjWwe%252F3DJSj1ZdRE59Qrdrt%252Fo%253D%26rv%3D0; SUP=cv%3D1%26bt%3D1434867321%26et%3D1434953721%26d%3Dc909%26i%3D41b5%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D17%26st%3D0%26uid%3D5513307770%26name%3Dmkqtx11141ua%2540163.com%26nick%3D%25E6%25AF%2581%25E9%25A6%2599%25E5%258A%2588%25E5%25BC%25B9%26fmp%3D%26lcp%3D2015-03-20%252000%253A59%253A43; YF-V5-G0=d22a701aae075ca04c11f0ef68835839; _s_tentry=login.sina.com.cn; UOR=,,login.sina.com.cn; Apache=9776813265987.371.1434184446576; YF-Page-G0=8fee13afa53da91ff99fc89cc7829b07; WBStore=0d3077cd0cad2262|undefined; SUB=_2A254giYpDeTxGeNL6lES8CnLzDyIHXVb9hDhrDV8PUJbvNBeLRjHkW8xuQX_wA9ncQZsaP1yWBfuXyq9-w..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5iPVj051o7KP9Hly_f8Jud5JpX5K-t; ALF=1466403316; SSOLoginState=1434867321; wvr=6"
+        #cookie = "SINAGLOBAL  =  1791602201041.3557.1455610750935 ;ULV  = 1455611177148:2:2:2:7716728692915.958.1455611177145:1455610750940  ;SUBP  =  0033WrSXqPxfM725Ws9jqgMF55529P9D9WWNbPECqqxh2rppyWaDQBvZ5JpX5KMt  ;SUHB  =  0jBJqq9P-KpPgN  ;un = guanglingsan1988@sina.com ;wvr  = 6    ;SUS  =  SID-1340714021-1455611173-GZ-b2ey8-468e97b8ca4455bc4ba3beddabec7cd6  ;SUE   = es%3D8484201c133ec33b03f1ed14aa4534fa%26ev%3Dv1%26es2%3D33ba64a44d9ac86cf555cf05bc397327%26rs0%3DM3QtGCbcUToEqKLA6eAZVpMrEX7u4bQVwvi5fHwr4DhrFNaB0594dwFDsL2CZMg5fRLrIkFt3zc9Bx10kzDewhd7AbovJSdm8cKV0c4V1VEfND1YM3XwCaiwZgbhwWc6jXLCbykNpryMLWTdianTFmPUmFrF0%252BazZmYEFLfT7ww%253D%26rv%3D0   ;SUP   = cv%3D1%26bt%3D1455611174%26et%3D1455697574%26d%3Dc909%26i%3D7cd6%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D0%26st%3D0%26uid%3D1340714021%26name%3Dguanglingsan1988%2540sina.com%26nick%3Dschumacher%26fmp%3D%26lcp%3D2012-02-02%252019%253A20%253A09    ;SUB   =  _2A257xq12DeRxGedN71IW8SrMyT2IHXVYtZm-rDV8PUNbvtBeLRnGkW9LHet86m9AJ9R6RMhU07ClXHxqCx1S0A..   ;ALF    = 1487147173   ;SSOLoginState   = 1455611174   ;_s_tentry    = login.sina.com.cn   ;UOR   = ,,login.sina.com.cn    ;Apache   =  7716728692915.958.1455611177145 "
+        print 'start load cookie'
+        #print cookie
+        self.downloader = Downloader()#Downloader(cookie)
 
     def _process_html(self, content):
         """
@@ -31,8 +32,9 @@ class UserCrawler(object):
         return ''
 
     def get_url(self, upage):
+        #return 'http://weibo.com/1340714021/fans?cfs=600&relate=fans&t=1&f=1&type=&Pl_Official_RelationFans__106_page=5#Pl_Official_RelationFans__106'
         #return 'http://weibo.com/aj/v6/mblog/info/big?ajwvr=6&id=3783364643412551&max_id=3783417797719751&page='+str(upage)
-	return 'http://weibo.com/aj/v6/mblog/info/big?ajwvr=6&id=3855095853042261&max_id=3856157879315930&page='+str(upage)
+        return 'http://weibo.com/aj/v6/mblog/info/big?ajwvr=6&id=3855095853042261&max_id=3856157879315930&page='+str(upage)
     def _init(self, uid):
         """
         初始化用户信息列表
@@ -54,15 +56,15 @@ class UserCrawler(object):
         followee_list = []
         repost_list=list()
         followee_set = set()
-        for i in range(1,219):
+        for i in range(1,50):#219
             html_data = self.downloader.download(self.get_url(i))
             html_data = self._process_html(html_data)
-	    #print html_data
+            #print html_data
             if html_data is not None:
                     try:
-                        soup = BeautifulSoup(html_data.decode('utf-8', 'ignore'))
+                        soup = BeautifulSoup(html_data.decode('utf-8', 'ignore'),"lxml")
                         #followee_html_list= soup.findAll('div')
-			#print followee_html_list
+                        #print followee_html_list
                         followee_html_list=soup.findAll('div',attrs={'class':'list_li S_line1 clearfix'})
 			#print followee_html_list
                         for followee_html in followee_html_list:

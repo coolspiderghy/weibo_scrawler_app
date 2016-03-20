@@ -21,7 +21,7 @@ if __name__=='__main__':
     data_conn=conn.get_conn()
     dc=data_conn.weibo
     dc.authenticate('lige', '123') # check auth
-    file_data_path='D:/python_workspace/data0'
+    file_data_path='/Users/genghaiyang/!ghy_works/projects/weibo_crawler' #'D:/python_workspace/data0'
     files=os.listdir(file_data_path)
     for file_data in files:
         print file_data

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 
 class BlogParser:
@@ -52,8 +52,9 @@ class BlogParser:
         bpos = html.find('<!--feed内容-->')
         epos = html.find('<!--翻页-->', bpos)
         bloghtml = html[bpos:epos].replace('\\/', '/') + '</div>'
-        soup = BeautifulSoup(bloghtml)
-        blogsouplist = soup.find_all('div', class_='WB_cardwrap WB_feed_type S_bg2 ')
+        soup = BeautifulSoup(bloghtml,"lxml")
+        blogsouplist = soup.find_all('div', class_='WB_cardwrap WB_feed_type S_bg2')
+        #WB_cardwrap WB_feed_type S_bg2
         bloglist = []
         for blogsoup in blogsouplist:
             self.init_blog()
