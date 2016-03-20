@@ -7,3 +7,4 @@ Git has stage,4line.
 add one line in dev branch.
 creat a new brach feel happy.
 manage branches.
+git is free!
